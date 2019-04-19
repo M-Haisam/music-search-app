@@ -1,0 +1,40 @@
+.container {
+    margin: 20px 0;
+}
+
+.heading {
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+
+.artist {
+    width: 14%;
+    height: 200px;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+
+.list-container {
+    background-color: rgba(30, 30, 30, 0.2);
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.list-container:hover {
+    background-color: rgba(0, 0, 0, 0.7);    
+}
+
+.text {
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+
+

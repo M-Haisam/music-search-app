@@ -1,0 +1,34 @@
+.container {
+    margin: 50px 0;
+}
+
+.heading {
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+
+.inline {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.track {
+    background-color: #fafafa;
+    color: #000;
+    max-width: 80%;
+    padding: 10px 20px;
+    margin: 2px 0;
+    border-bottom: 1px solid #d9d9d9;  
+    cursor: pointer; 
+}
+
+.track:hover {
+    background-color: #000;
+    color: #fff;
+    margin-left: 15px;
+    transition: background-color 0.2s;
+}
+
+.span {
+    margin-left: 10px;
+}

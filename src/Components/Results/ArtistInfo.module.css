@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.image {
+    border-radius: 50%;
+}
+
+.text-container {
+    max-width: 75%;
+    margin-left: 25px;
+}
+
+.heading {
+    font-size: 40px;
+    color: red;
+}
+
+.text {
+    margin-top: 15px;
+    line-height: 1.2;
+    font-size: 17px;
+}

@@ -1,0 +1,16 @@
+.container {
+    margin: 50px auto;
+    max-width: 80em;
+}
+
+.heading {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.album {
+    width: 300px;
+    margin: 20px 30px;
+    display: inline-block;
+    text-align: center;
+}
