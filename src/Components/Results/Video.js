@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import VideoPlayer from './VideoPlayer';
 
 class Video extends Component {
 
@@ -13,7 +14,7 @@ class Video extends Component {
     fetchData = () => {
 
         if (this.props.trackName.length !==0) {
-            const url = "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyCgFFm4z6LBNXkbCrdKwuDiyqyd8hTjMX4&maxResults=1&q=" + this.props.trackName;
+            const url = "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyCgFFm4z6LBNXkbCrdKwuDiyqyd8hTjMX4&maxResults=1&q=" + this.props.trackName + ' ' + this.props.artistName;
             
             fetch(url)
                 .then(result => result.json())
@@ -22,7 +23,7 @@ class Video extends Component {
                         data: result.items[0]
                     });
                 });
-            }
+        };
     }
 
     componentDidMount() {
@@ -37,6 +38,8 @@ class Video extends Component {
 
     render() {
         // console.log(this.props.trackName);
+        const {artistName} = this.props;
+        const {trackName} = this.props;
         const {data} = this.state;
         if (data.length !== 0) {
             var videoId = this.state.data.id.videoId;
@@ -46,8 +49,9 @@ class Video extends Component {
         const url = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
 
         return (
-            <iframe src={url} title={title}  allowFullScreen={true} enablejsapi='true'>
-            </iframe>
+            <React.Fragment>
+                <VideoPlayer artistName={artistName} trackName={trackName} videoUrl={url} />
+            </React.Fragment>
         )
     }
 }

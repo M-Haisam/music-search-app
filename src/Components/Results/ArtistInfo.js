@@ -42,16 +42,9 @@ class ArtistInfo extends Component {
         const {data} = this.state;
         if (data.length !== 0) {
             var imgSrc = data.image[2]['#text'];
-            var summary = data.bio.summary;
         }
         return (
-            <section className={styles.container}>
-                <img src={imgSrc} alt="Artist" className={styles.image}></img>
-                <div className={styles['text-container']}>
-                    <h1 className={styles.heading}>{data.name}</h1>
-                    <p className={styles.text} dangerouslySetInnerHTML={{__html: summary}}></p>
-                </div>
-            </section>
+            <img src={imgSrc} alt="Artist" className={styles.image}></img>
         )
     }
 }

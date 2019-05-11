@@ -24,7 +24,7 @@ class Tracks extends Component {
     fetchData = () => {
         let query = encodeURIComponent(this.props.query);
         query = query.split('%20').join('+');
-        const url = "http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=" + query + "&api_key=0a69994bb150786ab25f611187931d88&format=json&limit=10";
+        const url = "http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=" + query + "&api_key=0a69994bb150786ab25f611187931d88&format=json&limit=15";
 
         fetch(url)
             .then(result => result.json())
@@ -34,10 +34,6 @@ class Tracks extends Component {
                 });
             });
     }
-
-    // handleClick = () => {
-
-    // }
 
     componentDidMount() {
         this.fetchData();
@@ -50,9 +46,13 @@ class Tracks extends Component {
     }
 
     render() {
-        // const {query} = this.props;
-        // console.log(this.state.trackName);
+
         const {data} = this.state;
+        if (data.length !== 0) {
+            var imgSrc = data[0].image[3]['#text'];
+            var artistName = data[0].artist.name;
+        }
+
         const tracks = data.map((track, index) => {
             return (
                 <li className={styles.track} key={index} onClick={() => this.handleClick(track.name)}>
@@ -64,14 +64,15 @@ class Tracks extends Component {
 
 
         return (
-            <section className={styles.container}>
-                <h2 className={styles.heading}>Top Tracks</h2>
-                <div className={styles.inline}>
+            <section className={styles.main}>
+                <div className={styles['inline-container']}>
+                    <h1 className={styles.heading}>{artistName}</h1>
                     <ul className={styles.list}>
                         { tracks }
                     </ul>
-                    <Video trackName={this.state.trackName}/>
+                    <img src={imgSrc} alt="Artist" className={styles.image}></img>
                 </div>
+                <Video artistName={artistName} trackName={this.state.trackName} />
             </section>
         )
     }

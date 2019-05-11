@@ -1,0 +1,167 @@
+.controls-container {
+    background-color: #262626;
+    position: fixed;
+    bottom: 0%;
+    height: 0px;
+    width: 100%;
+    z-index: 1;
+    transition: height 0.5s;
+}
+
+/* .center-container {
+    
+
+} */
+
+.inline-container {
+    margin: 0 auto;
+    max-width: 85%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 3fr;
+    grid-template-rows: 1fr 2fr 1fr;
+}
+
+.text-container {
+    grid-row-start: 2;
+}
+
+.seek-container, .button-container {
+    display: flex;
+    align-items: center;
+    grid-row-start: 2;
+}
+
+.artist-name {
+    font-size: 25px;
+    color: red;
+}
+
+.track-name {
+    margin-top: 5px;
+    font-size: 20px;
+    color: #fff;
+}
+
+.button {
+    margin: 0 8px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.mute-toggled {
+    color: red;
+}
+
+.loop-button {
+    color: #fff;
+    font-size: 30px;
+}
+
+.loop-toggled {
+    color: red;
+    font-size: 30px;
+}
+
+.play-pause {
+    font-size: 30px;
+}
+
+/* .stop-button {
+
+} */
+
+.duration {
+    margin: 0 5px;
+    color: #fff;
+}
+
+.volume-bar {
+    cursor: pointer;
+}
+
+.toggle-player {
+    height: 100px;
+    transition: height 0.5s;
+}
+
+.seek-bar {
+    width: 100%;
+    cursor: pointer;
+}
+
+.seek-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: 1px solid #000000;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+    margin-top: -9px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+  
+.seek-bar::-moz-range-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+}
+  
+.seek-bar::-ms-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.seek-bar::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background-color: red;
+    border-radius: 5px;
+    border: 0.2px solid #010101;
+}
+  
+.seek-bar::-moz-range-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background-color: red;
+    border-radius: 5px;
+    border: 0.2px solid #010101;
+}
+  
+.seek-bar::-ms-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    border-width: 16px 0;
+    color: transparent;
+}
+
+.seek-bar::-ms-fill-lower {
+    background-color: red;
+    border-radius: 5px;
+    border: 0.2px solid #010101;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+
+.seek-bar::-ms-fill-upper {
+    background-color: red;
+    border-radius: 5px;
+    border: 0.2px solid #010101;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}

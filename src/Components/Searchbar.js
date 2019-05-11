@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Autosuggest from 'react-autosuggest';
 
+import './Searchbar.css';
+
 const getSuggestionValue = (suggestion) => suggestion.name;
 const renderSuggestion = (suggestion) => (
     <span>{suggestion.name}</span>
@@ -28,13 +30,22 @@ class Searchbar extends Component {
             value: newValue
         });
     }
-
+    
     onSuggestionsFetchRequested = ({ value }) => {
-        fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${value}&api_key=0a69994bb150786ab25f611187931d88&format=json&limit=10`)
+        fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${value}&api_key=0a69994bb150786ab25f611187931d88&format=json&limit=7`)
           .then(response => response.json())
           .then(data => this.setState({ suggestions: data.results.artistmatches.artist }))
       }
     
+    onSuggestionSelected = (e, {suggestionValue}) => {
+        console.log(suggestionValue);
+        const url = this.setParams(suggestionValue);
+        this.props.routeProps.push('/results?' + url);
+        this.setState({
+            value: ''
+        });
+    }
+        
     onSuggestionsClearRequested = () => {
         this.setState({ suggestions: [] });
       };
@@ -60,16 +71,16 @@ class Searchbar extends Component {
         };
 
         return (
-            <form onSubmit={this.handleSubmit}>
                 <Autosuggest 
                 suggestions={suggestions}
                 onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                onSuggestionSelected={this.onSuggestionSelected}
                 onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                 getSuggestionValue={getSuggestionValue}
                 renderSuggestion={renderSuggestion}
+                highlightFirstSuggestion={true}
                 inputProps={inputProps} 
                 />
-            </form>
         )
     }
 }
