@@ -10,6 +10,7 @@ class SimilarArtists extends Component {
             data: []
         };
         this.fetchData = this.fetchData.bind(this);
+        this.animateToTop = this.animateToTop.bind(this);
     };
 
     handleClick = (query) => {
@@ -18,13 +19,14 @@ class SimilarArtists extends Component {
         const url = params.toString();
 
         this.props.routeProps.push('/results?' + url);
+        this.animateToTop();
     }
 
     fetchData = () => {
         let query = encodeURIComponent(this.props.query);
         query = query.split('%20').join('+');
         const url = "http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=" + query + "&api_key=0a69994bb150786ab25f611187931d88&format=json&limit=7";
-
+        
         fetch(url)
             .then(result => result.json())
             .then(result => {
@@ -32,6 +34,17 @@ class SimilarArtists extends Component {
                     data: result.similarartists.artist
                 });
             });
+    }
+
+    animateToTop = () => {
+        var scrollToTop = setInterval(function() {
+            var position = window.pageYOffset;
+            if (position > 0) {
+                window.scrollTo(0, position - 20);
+            } else {
+                clearInterval(scrollToTop);
+            }
+        }, 1);
     }
     
     componentDidMount() {
@@ -48,11 +61,10 @@ class SimilarArtists extends Component {
 
         const {data} = this.state;
         const artists = data.map((artist, index) => {
-        
-            const backgroundStyle = {
-            backgroundImage: 'url('+artist.image[2]['#text']+')',
-            backgroundSize: 'cover'
-            }
+        const backgroundStyle = {
+            backgroundImage: 'url('+artist.image[2]['#text']+')'
+        }
+
             return (
                 <li key={index} style={backgroundStyle} className={styles.artist} onClick={() => this.handleClick(artist.name)}>
                     <div className={styles['list-container']}>
@@ -67,7 +79,7 @@ class SimilarArtists extends Component {
         return (
             <section className={styles.container}>
                 <h2 className={styles.heading}>Similar Artists</h2>
-                <ul className={styles.container}>
+                <ul>
                     { artists }
                 </ul>
             </section>

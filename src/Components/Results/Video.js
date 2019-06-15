@@ -43,7 +43,7 @@ class Video extends Component {
         const {data} = this.state;
         if (data.length !== 0) {
             var videoId = this.state.data.id.videoId;
-            var title = this.state.data.snippet.title;
+            // var title = this.state.data.snippet.title;
         };
 
         const url = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";

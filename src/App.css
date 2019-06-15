@@ -69,7 +69,6 @@ input[type=range] {
   input[type=range]::-ms-track {
     width: 100%;
     cursor: pointer;
-  
     /* Hides the slider so custom styles can be added */
     background: transparent; 
     border-color: transparent;

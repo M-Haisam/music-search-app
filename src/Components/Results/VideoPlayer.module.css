@@ -17,7 +17,7 @@
     margin: 0 auto;
     max-width: 85%;
     display: grid;
-    grid-template-columns: 1fr 1fr 3fr;
+    grid-template-columns: 2fr 1fr 3fr;
     grid-template-rows: 1fr 2fr 1fr;
 }
 
@@ -32,48 +32,50 @@
 }
 
 .artist-name {
-    font-size: 25px;
+    font-size: 20px;
     color: red;
 }
 
 .track-name {
     margin-top: 5px;
-    font-size: 20px;
+    font-size: 15px;
     color: #fff;
 }
 
 .button {
     margin: 0 8px;
-    font-size: 20px;
+    font-size: 15px;
     cursor: pointer;
     color: #fff;
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
 
 .mute-toggled {
     color: red;
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
 
 .loop-button {
     color: #fff;
-    font-size: 30px;
+    font-size: 25px;
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
 
 .loop-toggled {
     color: red;
-    font-size: 30px;
+    font-size: 25px;
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
 
 .play-pause {
-    font-size: 30px;
+    font-size: 25px;
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
-
-/* .stop-button {
-
-} */
 
 .duration {
     margin: 0 5px;
     color: #fff;
+    font-size: 15px;
 }
 
 .volume-bar {
@@ -88,6 +90,7 @@
 .seek-bar {
     width: 100%;
     cursor: pointer;
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
 
 .seek-bar::-webkit-slider-thumb {
@@ -164,4 +167,233 @@
     border-radius: 5px;
     border: 0.2px solid #010101;
     box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+
+@media only screen and (min-width: 402px) and (max-width: 767px) {
+    .inline-container {
+        margin: 0 auto;
+        max-width: 85%;
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-row-gap: 10px;
+    }
+    
+    .text-container {
+        grid-row-start: 2;
+        grid-column-start: 1;
+    }
+    
+    .seek-container {
+        display: flex;
+        align-items: center;
+        grid-row-start: 1;
+        grid-column: 1 / 4;
+    }
+    
+    .button-container {
+        display: flex;
+        align-items: center;
+        grid-row-start: 2;
+        grid-column: 3;
+    }
+
+    .toggle-player {
+        height: 120px;
+        transition: height 0.5s;
+    }
+
+    .loop-button {
+        color: #fff;
+        font-size: 20px;
+    }
+    
+    .loop-toggled {
+        color: red;
+        font-size: 20px;
+    }
+    
+    .play-pause {
+        font-size: 20px;
+    }
+
+    .artist-name {
+        font-size: 15px;
+        color: red;
+    }
+    
+    .track-name {
+        margin-top: 5px;
+        font-size: 15px;
+        color: #fff;
+    }
+
+    .seek-bar::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        border: 1px solid #000000;
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        background: #ffffff;
+        cursor: pointer;
+        margin-top: -6px;
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    }
+      
+    .seek-bar::-moz-range-thumb {
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        border: 1px solid #000000;
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        background: #ffffff;
+        cursor: pointer;
+    }
+      
+    .seek-bar::-ms-thumb {
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        border: 1px solid #000000;
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        background: #ffffff;
+        cursor: pointer;
+    }
+    
+    .seek-bar::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 7px;
+        cursor: pointer;
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        background-color: red;
+        border-radius: 5px;
+        border: 0.2px solid #010101;
+    }
+      
+    .seek-bar::-moz-range-track {
+        width: 100%;
+        height: 7px;
+        cursor: pointer;
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        background-color: red;
+        border-radius: 5px;
+        border: 0.2px solid #010101;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 401px) {
+    .inline-container {
+        margin: 0 auto;
+        max-width: 85%;
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-row-gap: 10px;
+    }
+    
+    .text-container {
+        grid-row-start: 2;
+        grid-column-start: 1;
+    }
+    
+    .seek-container {
+        display: flex;
+        align-items: center;
+        grid-row-start: 1;
+        grid-column: 1 / 4;
+    }
+    
+    .button-container {
+        display: flex;
+        align-items: center;
+        grid-row-start: 2;
+        grid-column: 3;
+    }
+
+    .toggle-player {
+        height: 150px;
+        transition: height 0.5s;
+    }
+
+    .loop-button {
+        color: #fff;
+        font-size: 20px;
+    }
+    
+    .loop-toggled {
+        color: red;
+        font-size: 20px;
+    }
+    
+    .play-pause {
+        font-size: 20px;
+    }
+
+    .artist-name {
+        font-size: 15px;
+        color: red;
+    }
+    
+    .track-name {
+        margin-top: 5px;
+        font-size: 15px;
+        color: #fff;
+    }
+    
+    .toggle-player {
+        height: 150px;
+        transition: height 0.5s;
+    }
+    
+    .seek-bar::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        border: 1px solid #000000;
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        background: #ffffff;
+        cursor: pointer;
+        margin-top: -6px;
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    }
+      
+    .seek-bar::-moz-range-thumb {
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        border: 1px solid #000000;
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        background: #ffffff;
+        cursor: pointer;
+    }
+      
+    .seek-bar::-ms-thumb {
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        border: 1px solid #000000;
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        background: #ffffff;
+        cursor: pointer;
+    }
+    
+    .seek-bar::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 7px;
+        cursor: pointer;
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        background-color: red;
+        border-radius: 5px;
+        border: 0.2px solid #010101;
+    }
+      
+    .seek-bar::-moz-range-track {
+        width: 100%;
+        height: 7px;
+        cursor: pointer;
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        background-color: red;
+        border-radius: 5px;
+        border: 0.2px solid #010101;
+    }
 }

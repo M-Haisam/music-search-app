@@ -9,17 +9,14 @@
     grid-template-areas:
         "heading heading"
         "tracks image";
-    margin: 0 auto;
+    margin: 0 20px;
     max-width: 115em;
-}
-
-.image {
-    width: 100%;
+    transition: 0.5s;
 }
 
 .heading {
     grid-area: heading;
-    margin: 10px 0 30px;
+    margin-bottom: 30px;
     font-size: 40px;
     color: red;
 }
@@ -30,15 +27,19 @@
 
 .image {
     grid-area: image;
+    width: 100%;
 }
 
 .track {
+    display: flex;
+    align-items: center;
     background-color: #fafafa;
     color: #000;
     padding: 10px 20px;
     margin: 2px 0;
     border-bottom: 1px solid #d9d9d9;  
     cursor: pointer; 
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
 }
 
 .track:hover {
@@ -48,6 +49,52 @@
     transition: background-color 0.2s;
 }
 
+.play-icon {
+    font-size: 12px;
+    float: left;
+    visibility: hidden;
+}
+
+.track:hover .play-icon {
+    visibility: visible;
+    margin: 0 10px;
+}
+
 .span {
     margin-left: 10px;
+    font-size: 16px;
+}
+
+.spinner-container {
+    text-align: center;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1160px) {
+    .inline-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 50px;
+        grid-template-areas:
+            "heading heading"
+            "tracks image";
+        margin: 0 20px;
+        max-width: 115em;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+    .inline-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-column-gap: 50px;
+        grid-template-areas:
+            "heading"
+            "tracks";
+        margin: 0 20px;
+        max-width: 115em;
+    }
+
+    .image {
+        display: none;
+    }
 }

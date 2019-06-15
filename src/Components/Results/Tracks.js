@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
+import ArtistImage from './ArtistImage';
 import Video from './Video';
+
+import _Loader from 'react-loader-spinner';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Tracks.module.css';
 
@@ -9,7 +15,8 @@ class Tracks extends Component {
         super(props);
         this.state = {
             data: [],
-            trackName: ''
+            trackName: '',
+            isLoading: false
         };
         this.fetchData = this.fetchData.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -25,12 +32,15 @@ class Tracks extends Component {
         let query = encodeURIComponent(this.props.query);
         query = query.split('%20').join('+');
         const url = "http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=" + query + "&api_key=0a69994bb150786ab25f611187931d88&format=json&limit=15";
-
+        this.setState({
+            isLoading: true
+        });
         fetch(url)
             .then(result => result.json())
             .then(result => {
                 this.setState({
-                    data: result.toptracks.track
+                    data: result.toptracks.track,
+                    isLoading: false
                 });
             });
     }
@@ -42,7 +52,7 @@ class Tracks extends Component {
     componentDidUpdate(prevProps) {
         if (this.props.query !== prevProps.query) {
             this.fetchData();
-        }
+        };
     }
 
     render() {
@@ -57,6 +67,7 @@ class Tracks extends Component {
             return (
                 <li className={styles.track} key={index} onClick={() => this.handleClick(track.name)}>
                     {track['@attr'].rank} 
+                    <FontAwesomeIcon icon={faPlay} className={styles['play-icon']}></FontAwesomeIcon>
                     <span className={styles.span}>{track.name}</span>
                 </li>
             )
@@ -65,14 +76,26 @@ class Tracks extends Component {
 
         return (
             <section className={styles.main}>
-                <div className={styles['inline-container']}>
-                    <h1 className={styles.heading}>{artistName}</h1>
-                    <ul className={styles.list}>
-                        { tracks }
-                    </ul>
-                    <img src={imgSrc} alt="Artist" className={styles.image}></img>
-                </div>
-                <Video artistName={artistName} trackName={this.state.trackName} />
+                
+                    {this.state.isLoading ? 
+                        <div className={styles['spinner-container']}><_Loader 
+                            type="Oval"
+                            color="red"
+                            height="100"	
+                            width="100" /> 
+                        </div> : 
+                        
+                        <div className={styles['inline-container']}>
+                            <h1 className={styles.heading}>{artistName}</h1>
+                            <ul className={styles.list}>
+                                { tracks }
+                            </ul>
+                            <img src={imgSrc} className={styles.image}></img>
+                        </div>
+                    }
+
+                    <Video artistName={artistName} trackName={this.state.trackName} />     
+
             </section>
         )
     }

@@ -148,9 +148,8 @@ class VideoPlayer extends Component {
     render() {
         const { playing, stop, volume, muted, loop, played, duration } = this.state;
         
-        if (!stop) {
-            var {videoUrl, trackName} = this.props;
-        }
+        
+        var {videoUrl, trackName} = this.props;
 
         const togglePlayer = stop ? '' : styles['toggle-player'];
         const toggleLoop = loop ? styles['loop-toggled'] : styles['loop-button'];
@@ -167,8 +166,14 @@ class VideoPlayer extends Component {
                     playing={playing}
                     loop={loop}
                     volume={volume}
-                    muted={muted}onReady={() => console.log('onReady')}
-                    onReady={() => console.log('onReady')}
+                    muted={muted}
+                    onReady={() => {
+                        this.setState({
+                            playing: true,
+                            stop: false
+                        });
+                        console.log('onReady');
+                    }}
                     onStart={() => console.log('onStart')}
                     onPlay={this.onPlay}
                     onPause={this.onPause}
@@ -190,7 +195,8 @@ class VideoPlayer extends Component {
                         <div className={styles['button-container']}>
                             <FontAwesomeIcon icon={muted ? faVolumeMute : faVolumeUp} onClick={this.toggleMuted} className={[styles.button, toggleMute].join(' ')}></FontAwesomeIcon>
                             <FontAwesomeIcon icon={playing ? faPause : faPlay} onClick={this.playPause} className={[styles.button, styles['play-pause']].join(' ')}></FontAwesomeIcon>
-                            <FontAwesomeIcon icon={faStop} onClick={this.stop} className={[styles.button, styles['stop-button']].join(' ')}></FontAwesomeIcon>
+                            {/* <FontAwesomeIcon icon={faStop} onClick={this.stop} className={[styles.button, styles['stop-button']].join(' ')}></FontAwesomeIcon> */}
+                            <FontAwesomeIcon icon={faRedoAlt} onClick={this.toggleLoop} className={[styles.button, toggleLoop].join(' ')}></FontAwesomeIcon>
                         </div>
                             
                             {/* <input 
@@ -200,7 +206,6 @@ class VideoPlayer extends Component {
                             /> */}
 
                         <div className={styles['seek-container']}>
-                            <FontAwesomeIcon icon={faRedoAlt} onClick={this.toggleLoop} className={[styles.button, toggleLoop].join(' ')}></FontAwesomeIcon>
                             <p><Duration className={styles.duration} seconds={duration * played} /></p>
                             <input 
                                 type='range' min={0} max={1} 

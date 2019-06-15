@@ -17,6 +17,7 @@ class Searchbar extends Component {
             suggestions: []
         };
         this.setParams = this.setParams.bind(this);
+        this.animateToTop = this.animateToTop.bind(this);
     }
 
     setParams = (query) => {
@@ -32,13 +33,13 @@ class Searchbar extends Component {
     }
     
     onSuggestionsFetchRequested = ({ value }) => {
-        fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${value}&api_key=0a69994bb150786ab25f611187931d88&format=json&limit=7`)
+        fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${value}&api_key=0a69994bb150786ab25f611187931d88&format=json&limit=6`)
           .then(response => response.json())
           .then(data => this.setState({ suggestions: data.results.artistmatches.artist }))
       }
     
     onSuggestionSelected = (e, {suggestionValue}) => {
-        console.log(suggestionValue);
+        this.animateToTop();
         const url = this.setParams(suggestionValue);
         this.props.routeProps.push('/results?' + url);
         this.setState({
@@ -50,16 +51,27 @@ class Searchbar extends Component {
         this.setState({ suggestions: [] });
       };
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        // console.log(this.state.value);
-        const url = this.setParams(this.state.value);
-        // console.log(this.props);
-        this.props.routeProps.push('/results?' + url);
-        this.setState({
-            value: ''
-        });
+    animateToTop = () => {
+        var scrollToTop = setInterval(function() {
+            var position = window.pageYOffset;
+            if (position > 0) {
+                window.scrollTo(0, position - 20);
+            } else {
+                clearInterval(scrollToTop);
+            }
+        }, 1);
     }
+    // handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     e.blur();
+    //     // console.log(this.state.value);
+    //     const url = this.setParams(this.state.value);
+    //     // console.log(this.props);
+    //     this.props.routeProps.push('/results?' + url);
+    //     this.setState({
+    //         value: ''
+    //     });
+    // }
 
     render() {
         
@@ -79,6 +91,7 @@ class Searchbar extends Component {
                 getSuggestionValue={getSuggestionValue}
                 renderSuggestion={renderSuggestion}
                 highlightFirstSuggestion={true}
+                focusInputOnSuggestionClick={false}
                 inputProps={inputProps} 
                 />
         )

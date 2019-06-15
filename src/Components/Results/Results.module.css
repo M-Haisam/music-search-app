@@ -2,3 +2,21 @@
     margin: 0 auto;
     max-width: 110em;
 }
+
+footer {
+    background-color: #000;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    color: #fff;
+    display: flex;
+    font-size: 15px;
+}
+
+
+@media only screen and (min-width: 320px) and (max-width: 401px) {
+    footer {
+        background-color: #000;
+        height: 150px;
+    }
+}
